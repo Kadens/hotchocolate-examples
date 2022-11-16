@@ -12,6 +12,21 @@ public record Author(int Id, string Name) : IMarker;
 
 public interface IMarker { }
 
+[ExtendObjectType(typeof(Book))]
+public sealed class BookExtensions1
+{
+    public IEnumerable<string> GetGenres([Parent] Book book)
+    {
+        List<string> Generes=new List<string>();
+        Generes.Add("Tech");
+        Generes.Add("Fag");
+        return Generes.AsEnumerable<string>();
+        // Omitted code for brevity
+    }
+    public string GetCategory([Parent] Book book)
+        => "Technical";
+}
+
 [ExtendObjectType(typeof(Author))]
 public sealed class AuthorExtensions1
 {
